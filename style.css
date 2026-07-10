@@ -1,49 +1,55 @@
-/* --- การตั้งค่าเริ่มต้นสไตล์ Retro Cyber-Neon --- */
+/* --- ธีมเริ่มต้น: Cyber-Neon --- */
 :root {
-    --bg-color: #0f172a; /* พื้นหลังสีน้ำเงินเข้มแบบอวกาศ */
-    --card-bg: #1e293b; /* การ์ดสีเทาเข้มอมน้ำเงิน */
-    --text-color: #38bdf8; /* ตัวหนังสือสีฟ้า Neon */
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #38bdf8;
     --text-light: #94a3b8;
-    --border-color: #f43f5e; /* ขอบสีชมพูนีออน */
-    --primary-color: #10b981; /* เขียวนีออน */
+    --border-color: #f43f5e;
+    --primary-color: #10b981;
     --primary-hover: #059669;
-    --secondary-color: #6366f1; /* ม่วงนีออน */
+    --secondary-color: #6366f1;
     --danger-color: #f43f5e;
     --danger-hover: #e11d48;
     --success-bg: #064e3b;
     --success-text: #34d399;
     --warning-bg: #78350f;
     --warning-text: #fbbf24;
-    --shadow: 0px 0px 15px rgba(244, 63, 94, 0.4); /* เงาเรืองแสงรอบตัวการ์ด */
+    --shadow: 0px 0px 15px rgba(244, 63, 94, 0.4);
 }
 
-/* ตัวแปรสำหรับสลับเป็นสไตล์ "Matrix Green" (โหมดทางเลือก) */
+/* --- ธีมตอนกดเปลี่ยนโหมด: Matrix-Hacker --- */
 [data-theme="dark"] {
     --bg-color: #050b05;
     --card-bg: #0d1a0d;
-    --text-color: #22c55e; /* ตัวหนังสือเขียวแบบจอคอมพิวเตอร์ยุคแรก */
+    --text-color: #22c55e;
     --text-light: #16a34a;
     --border-color: #22c55e;
-    --primary-color: #22c55e;
-    --secondary-color: #15803d;
-    --shadow: 0px 0px 15px rgba(34, 197, 94, 0.4);
+    --primary-color: #16a34a;
+    --primary-hover: #15803d;
+    --secondary-color: #14532d;
+    --danger-color: #dc2626;
+    --danger-hover: #991b1b;
+    --success-bg: #14532d;
+    --success-text: #4ade80;
+    --warning-bg: #451a03;
+    --warning-text: #facc15;
+    --shadow: 0px 0px 15px rgba(34, 197, 94, 0.5);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* ใช้ฟอนต์แนวโค้ดคอมพิวเตอร์เพื่อให้ได้ฟีลลิ่งโปรแกรมเมอร์ยุค 90s */
     font-family: 'Courier New', Courier, monospace, 'Prompt';
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     padding: 20px 10px;
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 50%, rgba(255, 255, 255, 0.05) 50%);
-    background-size: 100% 4px; /* สร้างลายเส้นสแกน (Scanlines) เหมือนหน้าจอ CRT โบราณ */
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.15) 50%, rgba(255, 255, 255, 0.02) 50%);
+    background-size: 100% 4px;
 }
 
 .container {
@@ -62,10 +68,9 @@ header {
 
 header h1 {
     font-size: 1.8rem;
-    text-shadow: 0 0 10px var(--text-color); /* เงาเรืองแสงที่ตัวอักษร */
+    text-shadow: 0 0 10px var(--text-color);
 }
 
-/* --- ตกแต่งการ์ดแบบตู้เกมเรืองแสง --- */
 .card {
     background-color: var(--card-bg);
     border: 3px solid var(--border-color);
@@ -73,35 +78,29 @@ header h1 {
     padding: 20px;
     margin-bottom: 25px;
     box-shadow: var(--shadow);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-3px); /* แอนิเมชันยกตัวขึ้นเล็กน้อยเวลาเมาส์ชี้ */
 }
 
 h2 {
     margin-bottom: 15px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #ffffff;
     text-shadow: 0 0 5px var(--border-color);
 }
 
-/* --- ปุ่มกดสไตล์ Arcade (ตู้เกมกดสปริง) --- */
+/* ปุ่มสไตล์ตู้เกม */
 .btn {
-    padding: 12px 18px;
-    border: 3px solid #000;
-    border-radius: 8px;
+    padding: 10px 15px;
+    border: 2px solid #000;
+    border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    text-transform: uppercase;
     font-family: inherit;
-    box-shadow: 4px 4px 0px #000; /* เงาปุ่มแบบแข็ง 2 มิติ */
+    box-shadow: 3px 3px 0px #000;
     transition: all 0.1s;
 }
 
 .btn:active {
-    transform: translate(3px, 3px); /* แอนิเมชันเวลายวบตัวลงเหมือนปุ่มจริง */
+    transform: translate(2px, 2px);
     box-shadow: 1px 1px 0px #000;
 }
 
@@ -109,40 +108,29 @@ h2 {
 .btn-primary:hover { background-color: var(--primary-hover); }
 .btn-secondary { background-color: var(--secondary-color); color: #fff; }
 .btn-danger { background-color: var(--danger-color); color: #000; }
-.btn-danger:hover { background-color: var(--danger-hover); }
 
-/* --- ส่วนฟอร์มรับข้อมูลแบบกรอบจอดำคอมพิวเตอร์ --- */
 .form-group {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
-.form-group label { 
-    margin-bottom: 5px; 
-    font-weight: bold; 
-    color: var(--text-color);
-}
+.form-group label { margin-bottom: 5px; font-weight: bold; }
 .form-group input, .form-group select {
-    padding: 12px;
+    padding: 10px;
     border: 2px solid var(--text-color);
     border-radius: 6px;
-    background-color: #000000; /* ช่องกรอกข้อมูลสีดำสนิท */
+    background-color: #000000;
     color: #ffffff;
     font-family: inherit;
 }
-.form-group input:focus, .form-group select:focus {
-    outline: none;
-    border-color: var(--border-color);
-    box-shadow: 0px 0px 8px var(--border-color);
-}
+
 .form-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
 }
 .form-buttons { display: flex; gap: 10px; margin-top: 10px; }
 
-/* --- หน้า Dashboard แดชบอร์ดแบบตารางคะแนน --- */
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -150,12 +138,12 @@ h2 {
     margin-bottom: 15px;
 }
 .stat-box {
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     border: 2px dashed var(--text-color);
     border-radius: 8px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 .stat-box.success { border-color: var(--primary-color); color: var(--primary-color); }
 .stat-box.warning { border-color: var(--border-color); color: var(--border-color); }
@@ -164,51 +152,48 @@ h2 {
     color: var(--danger-color);
     margin-left: 20px;
     margin-bottom: 8px;
-    list-style-type: "👾 "; /* ใช้ไอคอนเอเลี่ยนย้อนยุคแทนจุดหัวข้อ */
+    list-style-type: "👾 ";
 }
 
-/* --- ระบบค้นหาและตัวกรอง --- */
 .filter-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 12px;
 }
 .filter-grid input, .filter-grid select {
-    padding: 10px;
+    padding: 8px;
     border: 2px solid var(--text-color);
     border-radius: 6px;
     background-color: #000;
     color: #fff;
-    font-family: inherit;
 }
+.action-row { margin-top: 15px; display: flex; justify-content: flex-end; }
 
-/* --- รายการงาน (Task Card) สไตล์ Quest Log ในเกม --- */
+/* การ์ดภารกิจ */
 .task-item {
     background-color: var(--card-bg);
     border: 3px solid var(--border-color);
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 4px 4px 0px var(--border-color); /* เงากรอบสีนีออนแบบพิกเซล */
+    box-shadow: 4px 4px 0px var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
 }
-/* เปลี่ยนสีกล่องตามระดับความสำคัญ */
 .task-item.priority-high { border-color: var(--danger-color); box-shadow: 4px 4px 0px var(--danger-color); }
 .task-item.priority-medium { border-color: #f59e0b; box-shadow: 4px 4px 0px #f59e0b; }
 .task-item.priority-low { border-color: var(--primary-color); box-shadow: 4px 4px 0px var(--primary-color); }
 
-.task-info h3 { margin-bottom: 8px; font-size: 1.2rem; color: #fff; }
-.task-meta { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+.task-info h3 { margin-bottom: 8px; color: #fff; }
+.task-meta { font-size: 0.85rem; color: var(--text-light); }
 .badge {
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: bold;
-    display: inline-block;
     border: 1px solid currentColor;
 }
 .badge-completed { background-color: var(--success-bg); color: var(--success-text); }
@@ -218,7 +203,6 @@ h2 {
 .task-actions { display: flex; gap: 8px; }
 .hidden { display: none !important; }
 
-/* --- หน้าจอมือถือ --- */
 @media (max-width: 600px) {
     .dashboard-grid { grid-template-columns: 1fr; }
     .task-item { flex-direction: column; align-items: flex-start; }
