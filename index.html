@@ -3,8 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Cyber To-Do List</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Retro Cyber To-Do List (All-in-One)</title>
+    <style>
+        /* ==========================================================================
+           1. ส่วนของ CSS (ตกแต่งสไตล์ Retro Cyber-Neon / Matrix)
+           ========================================================================== */
+        
+        /* ธีมเริ่มต้น: Cyber-Neon (น้ำเงิน-ชมพู) */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #38bdf8;
+            --text-light: #94a3b8;
+            --border-color: #f43f5e;
+            --primary-color: #10b981;
+            --primary-hover: #059669;
+            --secondary-color: #6366f1;
+            --danger-color: #f43f5e;
+            --danger-hover: #e11d48;
+            --success-bg: #064e3b;
+            --success-text: #34d399;
+            --warning-bg: #78350f;
+            --warning-text: #fbbf24;
+            --shadow: 0px 0px 15px rgba(244, 63, 94, 0.4);
+        }
+
+        /* ธีมสลับโหมด: Matrix-Hacker (ดำ-เขียว) */
+        [data-theme="dark"] {
+            --bg-color: #050b05;
+            --card-bg: #0d1a0d;
+            --text-color: #22c55e;
+            --text-light: #16a34a;
+            --border-color: #22c55e;
+            --primary-color: #16a34a;
+            --primary-hover: #15803d;
+            --secondary-color: #14532d;
+            --danger-color: #dc2626;
+            --danger-hover: #991b1b;
+            --success-bg: #14532d;
+            --success-text: #4ade80;
+            --warning-bg: #451a03;
+            --warning-text: #facc15;
+            --shadow: 0px 0px 15px rgba(34, 197, 94, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace, 'Prompt';
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            padding: 20px 10px;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.15) 50%, rgba(255, 255, 255, 0.02) 50%);
+            background-size: 100% 4px; /* เอฟเฟกต์เส้นสแกนจอเก่า */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 3px double var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px var(--text-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 0 0 5px var(--border-color);
+        }
+
+        /* ปุ่มกดสไตล์ตู้เกม Arcade */
+        .btn {
+            padding: 10px 15px;
+            border: 2px solid #000;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.1s;
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        .btn-primary { background-color: var(--primary-color); color: #000; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-secondary { background-color: var(--secondary-color); color: #fff; }
+        .btn-danger { background-color: var(--danger-color); color: #000; }
+        .btn-danger:hover { background-color: var(--danger-hover); }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label { margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select {
+            padding: 10px;
+            border: 2px solid var(--text-color);
+            border-radius: 6px;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .form-buttons { display: flex; gap: 10px; margin-top: 10px; }
+
+        /* แดชบอร์ดภาพรวม */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .stat-box {
+            padding: 12px;
+            text-align: center;
+            border: 2px dashed var(--text-color);
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        .stat-box.success { border-color: var(--primary-color); color: var(--primary-color); }
+        .stat-box.warning { border-color: var(--border-color); color: var(--border-color); }
+
+        .urgent-list li {
+            color: var(--danger-color);
+            margin-left: 20px;
+            margin-bottom: 8px;
+            list-style-type: "👾 ";
+        }
+
+        /* ส่วนค้นหาและกรองข้อมูล */
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .filter-grid input, .filter-grid select {
+            padding: 8px;
+            border: 2px solid var(--text-color);
+            border-radius: 6px;
+            background-color: #000;
+            color: #fff;
+        }
+        .action-row { margin-top: 15px; display: flex; justify-content: flex-end; }
+
+        /* รายการการ์ดภารกิจ */
+        .task-item {
+            background-color: var(--card-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 4px 4px 0px var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .task-item.priority-high { border-color: var(--danger-color); box-shadow: 4px 4px 0px var(--danger-color); }
+        .task-item.priority-medium { border-color: #f59e0b; box-shadow: 4px 4px 0px #f59e0b; }
+        .task-item.priority-low { border-color: var(--primary-color); box-shadow: 4px 4px 0px var(--primary-color); }
+
+        .task-info h3 { margin-bottom: 8px; color: #fff; }
+        .task-meta { font-size: 0.85rem; color: var(--text-light); }
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: 1px solid currentColor;
+        }
+        .badge-completed { background-color: var(--success-bg); color: var(--success-text); }
+        .badge-doing { background-color: #1e3a8a; color: #60a5fa; }
+        .badge-pending { background-color: var(--warning-bg); color: var(--warning-text); }
+
+        .task-actions { display: flex; gap: 8px; }
+        .hidden { display: none !important; }
+
+        @media (max-width: 600px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .task-item { flex-direction: column; align-items: flex-start; }
+            .task-actions { width: 100%; justify-content: flex-end; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -21,7 +239,7 @@
                 <div class="stat-box success">เสร็จแล้ว: <span id="completedTasks">0</span></div>
             </div>
             <div class="dashboard-details">
-                <h3>⚠️ URGENT QUESTS (ภายใน 3 วัน)</h3>
+                <h3>⚠️ URGENT QUESTS (ส่งใน 3 วันนี้)</h3>
                 <ul id="urgentTasksList" class="urgent-list"></ul>
                 
                 <h3>📚 QUESTS BY SUBJECT</h3>
@@ -60,7 +278,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="taskStatus">สถานะ:</label>
+                        <label for="taskStatus">สถานะงาน:</label>
                         <select id="taskStatus">
                             <option value="pending">ยังไม่ทำ</option>
                             <option value="doing">กำลังทำ</option>
@@ -100,11 +318,238 @@
         </section>
 
         <section class="list-section">
-            <h2>📋 ALL QUESTS (เรียงตามกำหนดส่งใกล้สุด)</h2>
+            <h2>📋 ALL QUESTS (เรียงตามดีลส่งใกล้สุด)</h2>
             <div id="taskList" class="task-list-container"></div>
         </section>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        let tasks = [];
+
+        const taskForm = document.getElementById('taskForm');
+        const taskIdInput = document.getElementById('taskId');
+        const taskTitleInput = document.getElementById('taskTitle');
+        const taskSubjectInput = document.getElementById('taskSubject');
+        const taskDueDateInput = document.getElementById('taskDueDate');
+        const taskPrioritySelect = document.getElementById('taskPriority');
+        const taskStatusSelect = document.getElementById('taskStatus');
+        const saveBtn = document.getElementById('saveBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const formTitle = document.getElementById('formTitle');
+
+        const searchTitle = document.getElementById('searchTitle');
+        const filterSubject = document.getElementById('filterSubject');
+        const filterStatus = document.getElementById('filterStatus');
+        const filterPriority = document.getElementById('filterPriority');
+        const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+        const taskListContainer = document.getElementById('taskList');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+        // เริ่มต้นระบบเมื่อเปิดเว็บ
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedTasks = localStorage.getItem('my_tasks_data');
+            if (storedTasks) {
+                tasks = JSON.parse(storedTasks);
+            }
+            
+            const savedTheme = localStorage.getItem('my_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            setupEventListeners();
+            renderApp();
+        });
+
+        function setupEventListeners() {
+            taskForm.addEventListener('submit', saveTask);
+            cancelEditBtn.addEventListener('click', clearForm);
+            searchTitle.addEventListener('input', renderApp);
+            filterSubject.addEventListener('input', renderApp);
+            filterStatus.addEventListener('change', renderApp);
+            filterPriority.addEventListener('change', renderApp);
+            clearCompletedBtn.addEventListener('click', clearCompletedTasks);
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        }
+
+        // ฟังก์ชันวาดข้อมูลบนหน้าเว็บหลัก
+        function renderApp() {
+            let filteredTasks = tasks.filter(task => {
+                const matchesSearch = task.title.toLowerCase().includes(searchTitle.value.toLowerCase());
+                const matchesSubject = task.subject.toLowerCase().includes(filterSubject.value.toLowerCase());
+                const matchesStatus = filterStatus.value === 'all' || task.status === filterStatus.value;
+                const matchesPriority = filterPriority.value === 'all' || task.priority === filterPriority.value;
+                return matchesSearch && matchesSubject && matchesStatus && matchesPriority;
+            });
+
+            // เรียงลำดับวันที่เดดไลน์ใกล้ที่สุดขึ้นก่อน
+            filteredTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+            updateDashboard();
+
+            taskListContainer.innerHTML = '';
+            if (filteredTasks.length === 0) {
+                taskListContainer.innerHTML = '<p style="text-align:center; padding:20px; color:var(--text-light);">❌ ไม่พบภารกิจที่ตรงตามเงื่อนไข</p>';
+                return;
+            }
+
+            filteredTasks.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.className = `task-item priority-${task.priority}`;
+                
+                const statusLabels = { pending: 'ยังไม่ทำ', doing: 'กำลังทำ', completed: 'เสร็จแล้ว' };
+                const priorityLabels = { low: 'ต่ำ', medium: 'ปานกลาง', high: 'สูง' };
+                
+                const dateObj = new Date(task.dueDate);
+                const formattedDate = dateObj.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: '2-digit' });
+
+                taskItem.innerHTML = `
+                    <div class="task-info">
+                        <h3>${task.title} <span class="badge badge-${task.status}">${statusLabels[task.status]}</span></h3>
+                        <div class="task-meta">
+                            <span>📚 วิชา: ${task.subject}</span> | 
+                            <span>📅 กำหนดส่ง: ${formattedDate}</span> | 
+                            <span>🔥 ความสำคัญ: ${priorityLabels[task.priority]}</span>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn btn-secondary" onclick="editTask('${task.id}')">✏️ EDIT</button>
+                        <button class="btn btn-danger" onclick="deleteTask('${task.id}')">🗑️ DEL</button>
+                    </div>
+                `;
+                taskListContainer.appendChild(taskItem);
+            });
+        }
+
+        // เพิ่มและแก้ไขข้อมูลงาน
+        function saveTask(e) {
+            e.preventDefault(); 
+            const id = taskIdInput.value;
+            const taskData = {
+                id: id || Date.now().toString(), 
+                title: taskTitleInput.value,
+                subject: taskSubjectInput.value,
+                dueDate: taskDueDateInput.value,
+                priority: taskPrioritySelect.value,
+                status: taskStatusSelect.value
+            };
+
+            if (id) {
+                const index = tasks.findIndex(t => t.id === id);
+                tasks[index] = taskData;
+            } else {
+                tasks.push(taskData);
+            }
+
+            saveToLocalStorage(); 
+            clearForm();          
+            renderApp();          
+        }
+
+        function editTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            taskIdInput.value = task.id;
+            taskTitleInput.value = task.title;
+            taskSubjectInput.value = task.subject;
+            taskDueDateInput.value = task.dueDate;
+            taskPrioritySelect.value = task.priority;
+            taskStatusSelect.value = task.status;
+
+            formTitle.innerText = '✏️ EDIT QUEST';
+            saveBtn.innerText = '💾 UPDATE';
+            cancelEditBtn.classList.remove('hidden');
+            taskForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteTask(id) {
+            if (confirm('ต้องการลบภารกิจนี้ใช่หรือไม่?')) {
+                tasks = tasks.filter(t => t.id !== id);
+                saveToLocalStorage();
+                renderApp();
+            }
+        }
+
+        function clearCompletedTasks() {
+            const completedCount = tasks.filter(t => t.status === 'completed').length;
+            if (completedCount === 0) {
+                alert('ไม่มีภารกิจที่เสร็จแล้วให้ล้างครับ');
+                return;
+            }
+            if (confirm(`ต้องการลบงานที่ทำเสร็จแล้วทั้งหมดจำนวน ${completedCount} งาน ใช่หรือไม่?`)) {
+                tasks = tasks.filter(t => t.status !== 'completed');
+                saveToLocalStorage();
+                renderApp();
+            }
+        }
+
+        function clearForm() {
+            taskIdInput.value = '';
+            taskForm.reset();
+            formTitle.innerText = '➕ ADD NEW QUEST';
+            saveBtn.innerText = '💾 SAVE QUEST';
+            cancelEditBtn.classList.add('hidden');
+        }
+
+        // อัปเดตข้อมูลแดชบอร์ดสถิติ
+        function updateDashboard() {
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.status === 'completed').length;
+            const pending = total - completed;
+
+            document.getElementById('totalTasks').innerText = total;
+            document.getElementById('pendingTasks').innerText = pending;
+            document.getElementById('completedTasks').innerText = completed;
+
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const threeDaysLater = new Date(today);
+            threeDaysLater.setDate(today.getDate() + 3);
+
+            const urgentTasks = tasks.filter(task => {
+                if (task.status === 'completed') return false;
+                const dueDate = new Date(task.dueDate);
+                return dueDate >= today && dueDate <= threeDaysLater;
+            });
+
+            const urgentList = document.getElementById('urgentTasksList');
+            urgentList.innerHTML = '';
+            if (urgentTasks.length === 0) {
+                urgentList.innerHTML = '<li>ไม่มีงานเร่งด่วนใน 3 วันนี้ 👍</li>';
+            } else {
+                urgentTasks.forEach(t => {
+                    urgentList.innerHTML += `<li><strong>${t.title}</strong> (วิชา ${t.subject}) ส่งวันที่ ${t.dueDate}</li>`;
+                });
+            }
+
+            const subjectCounts = {};
+            tasks.forEach(t => {
+                subjectCounts[t.subject] = (subjectCounts[t.subject] || 0) + 1;
+            });
+
+            const subjectList = document.getElementById('subjectStatsList');
+            subjectList.innerHTML = '';
+            const subjects = Object.keys(subjectCounts);
+            if (subjects.length === 0) {
+                subjectList.innerHTML = '<li>ไม่มีข้อมูลรายวิชา</li>';
+            } else {
+                subjects.forEach(sub => {
+                    subjectList.innerHTML += `<li>📘 ${sub}: ${subjectCounts[sub]} งาน</li>`;
+                });
+            }
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('my_tasks_data', JSON.stringify(tasks));
+        }
+
+        // ฟังก์ชันสลับธีมและเรนเดอร์สีใหม่ทันที
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('my_theme', newTheme);
+            renderApp();
+        }
+    </script>
 </body>
 </html>
