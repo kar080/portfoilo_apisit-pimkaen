@@ -31,16 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
         tasks = JSON.parse(storedTasks);
     }
     
-    // โหลดธีมสีที่เคยเลือกไว้
+    // โหลดธีมสีที่เคยเลือกไว้ ถ้าไม่มีให้ใช้ธีมเริ่มต้น (light = Cyber-Neon)
     const savedTheme = localStorage.getItem('my_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // ทำการประมวลผลการแสดงผลและแดชบอร์ด
-    renderApp();
+    // เรียกทำงานฟังก์ชัน Event และวาดหน้าจอหลัก
     setupEventListeners();
+    renderApp();
 });
 
-// --- 3. ฟังก์ชันจัดกิจกรรมตัวดักจับเหตุการณ์ (Event Listeners) ---
+// --- 3. ฟังก์ชันดักจับเหตุการณ์ (Event Listeners) ---
 function setupEventListeners() {
     // การส่งฟอร์ม (ทั้งเพิ่มและแก้ไข)
     taskForm.addEventListener('submit', saveTask);
@@ -76,13 +76,13 @@ function renderApp() {
     // เรียงลำดับงานตามวันที่ส่ง (ส่งก่อนอยู่บน)
     filteredTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
-    // บันทึกและแสดงผลสถิติ Dashboard
+    // อัปเดตตัวเลขและข้อมูลบน Dashboard
     updateDashboard();
 
     // แสดงรายการงานในหน้าเว็บ
     taskListContainer.innerHTML = '';
     if (filteredTasks.length === 0) {
-        taskListContainer.innerHTML = '<p style="text-align:center; padding:20px; color:var(--text-light);">ไม่พบรายการงาน</p>';
+        taskListContainer.innerHTML = '<p style="text-align:center; padding:20px; color:var(--text-light);">❌ ไม่พบภารกิจที่ค้นหา</p>';
         return;
     }
 
@@ -108,8 +108,8 @@ function renderApp() {
                 </div>
             </div>
             <div class="task-actions">
-                <button class="btn btn-secondary" onclick="editTask('${task.id}')">✏️ แก้ไข</button>
-                <button class="btn btn-danger" onclick="deleteTask('${task.id}')">🗑️ ลบ</button>
+                <button class="btn btn-secondary" onclick="editTask('${task.id}')">✏️ EDIT</button>
+                <button class="btn btn-danger" onclick="deleteTask('${task.id}')">🗑️ DEL</button>
             </div>
         `;
         taskListContainer.appendChild(taskItem);
@@ -118,13 +118,12 @@ function renderApp() {
 
 // --- 5. ฟังก์ชันจัดการข้อมูล (CRUD Operations) ---
 
-// เพิ่มหรือแก้ไขข้อมูลงาน
 function saveTask(e) {
-    e.preventDefault(); // ป้องกันหน้าเว็บ Refresh ตัวเอง
+    e.preventDefault(); 
 
     const id = taskIdInput.value;
     const taskData = {
-        id: id || Date.now().toString(), // ถ้าเป็นงานใหม่จะสร้างรหัสจากเวลาปัจจุบัน
+        id: id || Date.now().toString(), 
         title: taskTitleInput.value,
         subject: taskSubjectInput.value,
         dueDate: taskDueDateInput.value,
@@ -133,20 +132,17 @@ function saveTask(e) {
     };
 
     if (id) {
-        // กรณีแก้ไขข้อมูล: หาตำแหน่งเดิมแล้วแทนที่ข้อมูลใหม่
         const index = tasks.findIndex(t => t.id === id);
         tasks[index] = taskData;
     } else {
-        // กรณีเพิ่มข้อมูลใหม่: เอาไปต่อท้ายอาร์เรย์
         tasks.push(taskData);
     }
 
-    saveToLocalStorage(); // สั่งบันทึกข้อมูลลงคอมพิวเตอร์
-    clearForm();          // ล้างข้อมูลในกล่องข้อความ
-    renderApp();          // อัปเดตหน้าจอหลัก
+    saveToLocalStorage(); 
+    clearForm();          
+    renderApp();          
 }
 
-// เตรียมข้อมูลขึ้นไปบนฟอร์มเพื่อเข้าสู่โหมดแก้ไขข้อมูล
 function editTask(id) {
     const task = tasks.find(t => t.id === id);
     if (!task) return;
@@ -158,16 +154,13 @@ function editTask(id) {
     taskPrioritySelect.value = task.priority;
     taskStatusSelect.value = task.status;
 
-    // เปลี่ยนหน้าตาปุ่มและหัวข้อฟอร์ม
-    formTitle.innerText = '✏️ แก้ไขข้อมูลงาน';
-    saveBtn.innerText = '💾 บันทึกการแก้ไข';
+    formTitle.innerText = '✏️ EDIT QUEST';
+    saveBtn.innerText = '💾 UPDATE';
     cancelEditBtn.classList.remove('hidden');
     
-    // เลื่อนหน้าจอไปที่ฟอร์มด้านบนเพื่อให้ผู้ใช้รู้ว่ากำลังแก้ไข
     taskForm.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ลบรายการงานเดี่ยวๆ
 function deleteTask(id) {
     if (confirm('คุณแน่ใจหรือไม่ว่าต้องการลบงานนี้?')) {
         tasks = tasks.filter(t => t.id !== id);
@@ -176,26 +169,24 @@ function deleteTask(id) {
     }
 }
 
-// ลบงานที่ทำเสร็จแล้วออกทั้งหมด
 function clearCompletedTasks() {
     const completedCount = tasks.filter(t => t.status === 'completed').length;
     if (completedCount === 0) {
-        alert('ไม่มีงานที่เสร็จแล้วให้ลบครับ');
+        alert('ไม่มีภารกิจที่ทำเสร็จแล้วให้ล้างครับ');
         return;
     }
-    if (confirm(`ต้องการลบงานที่เสร็จแล้วทั้งหมดจำนวน ${completedCount} งาน ใช่หรือไม่?`)) {
+    if (confirm(`ต้องการลบงานที่ทำเสร็จแล้วทั้งหมดจำนวน ${completedCount} งาน ใช่หรือไม่?`)) {
         tasks = tasks.filter(t => t.status !== 'completed');
         saveToLocalStorage();
         renderApp();
     }
 }
 
-// ล้างฟอร์มกลับเป็นค่าเริ่มต้น
 function clearForm() {
     taskIdInput.value = '';
     taskForm.reset();
-    formTitle.innerText = '➕ เพิ่มงานใหม่';
-    saveBtn.innerText = '💾 บันทึกข้อมูล';
+    formTitle.innerText = '➕ ADD NEW QUEST';
+    saveBtn.innerText = '💾 SAVE QUEST';
     cancelEditBtn.classList.add('hidden');
 }
 
@@ -205,12 +196,10 @@ function updateDashboard() {
     const completed = tasks.filter(t => t.status === 'completed').length;
     const pending = total - completed;
 
-    // อัปเดตตัวเลขหลักบนบอร์ด
     document.getElementById('totalTasks').innerText = total;
     document.getElementById('pendingTasks').innerText = pending;
     document.getElementById('completedTasks').innerText = completed;
 
-    // หางานเร่งด่วน (ยังไม่เสร็จ และ ส่งภายใน 3 วันนับจากวันนี้)
     const today = new Date();
     today.setHours(0,0,0,0);
     const threeDaysLater = new Date(today);
@@ -232,7 +221,6 @@ function updateDashboard() {
         });
     }
 
-    // คำนวณจำนวนงานแยกตามรายวิชา
     const subjectCounts = {};
     tasks.forEach(t => {
         subjectCounts[t.subject] = (subjectCounts[t.subject] || 0) + 1;
@@ -250,15 +238,19 @@ function updateDashboard() {
     }
 }
 
-// --- 7. ฟังก์ชันจัดการ Local Storage & Theme ---
+// --- 7. ฟังก์ชันจัดการ Local Storage & ปุ่มเปลี่ยนธีม (แก้ไขจุดบั๊กแล้ว) ---
 function saveToLocalStorage() {
     localStorage.setItem('my_tasks_data', JSON.stringify(tasks));
 }
 
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
+    // สลับค่าระหว่าง 'light' (Cyber-Neon) กับ 'dark' (Matrix)
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('my_theme', newTheme);
+    
+    // รีเรนเดอร์แอปพลิเคชันใหม่เพื่อให้สีของ UI และ Component ต่าง ๆ อัปเดตตามธีมทันที
+    renderApp();
 }
