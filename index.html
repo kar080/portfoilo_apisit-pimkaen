@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการงานและสิ่งที่จะทำ (To-Do List SPA)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 ระบบจัดการการบ้าน & Task Tracker</h1>
+            <button id="themeToggleBtn" class="btn btn-secondary">🌓 เปลี่ยนโหมด (มืด/สว่าง)</button>
+        </header>
+
+        <section class="dashboard-section card">
+            <h2>📊 รายงานภาพรวม (Dashboard)</h2>
+            <div class="dashboard-grid">
+                <div class="stat-box">งานทั้งหมด: <span id="totalTasks">0</span></div>
+                <div class="stat-box warning">ยังไม่เสร็จ: <span id="pendingTasks">0</span></div>
+                <div class="stat-box success">เสร็จแล้ว: <span id="completedTasks">0</span></div>
+            </div>
+            <div class="dashboard-details">
+                <h3>⚠️ งานเร่งด่วน (ส่งภายใน 3 วันนี้และยังไม่เสร็จ)</h3>
+                <ul id="urgentTasksList" class="urgent-list"></ul>
+                
+                <h3>📚 จำนวนงานแยกตามรายวิชา</h3>
+                <ul id="subjectStatsList" class="subject-list"></ul>
+            </div>
+        </section>
+
+        <section class="form-section card">
+            <h2 id="formTitle">➕ เพิ่มงานใหม่</h2>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                
+                <div class="form-group">
+                    <label for="taskTitle">ชื่องาน / การบ้าน:</label>
+                    <input type="text" id="taskTitle" required placeholder="เช่น ส่งรายงานบทที่ 1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="taskSubject">รายวิชา:</label>
+                    <input type="text" id="taskSubject" required placeholder="เช่น คณิตศาสตร์, วิทยาการคำนวณ">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDueDate">วันที่ครบกำหนดส่ง:</label>
+                        <input type="date" id="taskDueDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskPriority">ระดับความสำคัญ:</label>
+                        <select id="taskPriority">
+                            <option value="low">ต่ำ</option>
+                            <option value="medium" selected>ปานกลาง</option>
+                            <option value="high">สูง</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskStatus">สถานะงาน:</label>
+                        <select id="taskStatus">
+                            <option value="pending">ยังไม่ทำ</option>
+                            <option value="doing">กำลังทำ</option>
+                            <option value="completed">เสร็จแล้ว</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" id="saveBtn" class="btn btn-primary">💾 บันทึกข้อมูล</button>
+                    <button type="button" id="cancelEditBtn" class="btn btn-secondary hidden">❌ ยกเลิกการแก้ไข</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="filter-section card">
+            <h2>🔍 ค้นหาและกรองข้อมูล</h2>
+            <div class="filter-grid">
+                <input type="text" id="searchTitle" placeholder="ค้นหาตามชื่องาน...">
+                
+                <input type="text" id="filterSubject" placeholder="กรองตามรายวิชา...">
+                
+                <select id="filterStatus">
+                    <option value="all">ทุกสถานะ</option>
+                    <option value="pending">ยังไม่ทำ</option>
+                    <option value="doing">กำลังทำ</option>
+                    <option value="completed">เสร็จแล้ว</option>
+                </select>
+
+                <select id="filterPriority">
+                    <option value="all">ทุกระดับความสำคัญ</option>
+                    <option value="low">ต่ำ</option>
+                    <option value="medium">ปานกลาง</option>
+                    <option value="high">สูง</option>
+                </select>
+            </div>
+            <div class="action-row">
+                <button id="clearCompletedBtn" class="btn btn-danger">🗑️ ลบงานที่เสร็จแล้วทั้งหมด</button>
+            </div>
+        </section>
+
+        <section class="list-section">
+            <h2>📋 รายการงานทั้งหมด (เรียงตามกำหนดส่งใกล้ที่สุด)</h2>
+            <div id="taskList" class="task-list-container">
+                </div>
+        </section>
+    </div>
+
+    <script href="app.js"></script>
+</body>
+</html>
+
