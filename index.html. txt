@@ -1,1 +1,2032 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ของขวัญวันวาเลนไทน์ - ของขวัญสำหรับแฟนที่คุณรัก</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. DESIGN SYSTEM & VARIABLES (Material Design 3 & Modern Aesthetic)
+           ========================================================================== */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+            --secondary-gradient: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+            --accent-color: #ff4d6d;
+            --accent-hover: #ff3355;
+            --secondary-color: #c77dff;
+            --dark-color: #2b2d42;
+            --light-bg: #fff5f6;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-600: #6c757d;
+            
+            /* Shadows & Blur effects */
+            --shadow-sm: 0 2px 8px rgba(255, 77, 109, 0.08);
+            --shadow-md: 0 8px 24px rgba(255, 77, 109, 0.12);
+            --shadow-lg: 0 16px 40px rgba(255, 77, 109, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-blur: blur(12px);
+            
+            /* Border Radius (Material Design 3 style) */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+            
+            /* Transition */
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           2. GENERAL RESETS & BASE STYLES
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+            transition: var(--transition-smooth);
+        }
+
+        /* Common Container Utility */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 15px auto 0;
+        }
+
+        /* Decorative Heart Elements floating in BG */
+        .bg-decor {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(15deg); }
+        }
+
+        /* ==========================================================================
+           3. NAVBAR (Glassmorphic & Sticky Header)
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 245, 246, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled .nav-container {
+            height: 70px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff4d6d;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--dark-color);
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: var(--transition-smooth);
+            border-radius: var(--radius-full);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Nav Toggle Icon */
+        .mobile-nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Shopping Cart Short-cut Button in Header */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-cart {
+            background: white;
+            color: var(--accent-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-cart:hover {
+            transform: translateY(-3px);
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff0000;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 117, 143, 0.15) 0%, rgba(255, 245, 246, 0.5) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: table;
+            width: 100%;
+        }
+
+        .hero-col {
+            display: table-cell;
+            vertical-align: middle;
+            width: 50%;
+        }
+
+        .hero-content {
+            padding-right: 40px;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 77, 109, 0.1);
+            color: var(--accent-color);
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .hero-title span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 35px;
+            animation: fadeInLeft 1.2s ease;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1.05rem;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            opacity: 0.95;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 77, 109, 0.05);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            padding: 20px;
+            animation: fadeInRight 1s ease;
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 8px solid white;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-badge i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .hero-badge-txt h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            }
+
+        .hero-badge-txt p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           5. ABOUT SECTION
+           ========================================================================== */
+        #about {
+            background-color: white;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .about-grid {
+            display: table;
+            width: 100%;
+        }
+
+        .about-col {
+            display: table-cell;
+            vertical-align: middle;
+            width: 50%;
+        }
+
+        .about-img-area {
+            position: relative;
+            padding-right: 40px;
+        }
+
+        .about-banner-container {
+            width: 100%;
+            height: 380px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 6px solid #fff5f6;
+        }
+
+        .about-banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+
+        .about-banner-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-details {
+            padding-left: 20px;
+        }
+
+        .about-details h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        .about-details p {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .feature-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feat-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: var(--radius-md);
+            transition: var(--transition-smooth);
+        }
+
+        .feat-card:hover {
+            transform: translateX(10px);
+            background: #fff0f2;
+        }
+
+        .feat-icon {
+            background: var(--primary-gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feat-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .feat-content p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           6. PRODUCT SECTION (Filterable Grid & Search)
+           ========================================================================== */
+        #products {
+            background: var(--light-bg);
+        }
+
+        /* Product Filtering & Controls Styling */
+        .product-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Search Bar styling */
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 24px 14px 50px;
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            background: white;
+            box-shadow: var(--shadow-sm);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* Categories Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            background: white;
+            color: var(--gray-600);
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 77, 109, 0.05);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 77, 109, 0.2);
+        }
+
+        .prod-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #fdfdfd;
+        }
+
+        .prod-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .prod-img {
+            transform: scale(1.1);
+        }
+
+        /* Hot/Category Badge on Card */
+        .prod-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            padding: 5px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .prod-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .prod-cat {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .prod-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 3.2em; /* Ensure consistent text height */
+        }
+
+        .prod-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px dashed var(--gray-200);
+        }
+
+        .prod-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .prod-price::after {
+            content: ' บาท';
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .btn-order {
+            background: var(--primary-gradient);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            font-size: 1rem;
+        }
+
+        .btn-order:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Empty State */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--gray-600);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--gray-300);
+            margin-bottom: 15px;
+        }
+
+        /* ==========================================================================
+           7. CONTACT SECTION
+           ========================================================================== */
+        #contact {
+            background-color: white;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+
+        .contact-grid {
+            display: table;
+            width: 100%;
+        }
+
+        .contact-col {
+            display: table-cell;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        .contact-info {
+            padding-right: 40px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: var(--light-bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 77, 109, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            background: #fff0f2;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-icon.fb {
+            background: linear-gradient(135deg, #1877f2, #0d5dd6);
+            color: white;
+        }
+
+        .contact-icon.line {
+            background: linear-gradient(135deg, #06c755, #05b04b);
+            color: white;
+        }
+
+        .contact-icon.phone {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .contact-details h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .contact-details p {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .contact-details a {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Feedback/Message Form Form side */
+        .contact-form-area {
+            padding-left: 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .form-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            background: var(--gray-100);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            background: white;
+            outline: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ==========================================================================
+           8. FOOTER
+           ========================================================================== */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            max-width: 350px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo .logo-text {
+            font-size: 1.5rem;
+        }
+
+        .footer-about p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-links-col h4 {
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-links-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-gradient);
+        }
+
+        .footer-links-col ul {
+            list-style: none;
+        }
+
+        .footer-links-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-col a {
+            font-size: 0.95rem;
+        }
+
+        .footer-links-col a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================================================
+           9. MODAL & QUICK VIEW & SHOPPING CART DRAWER
+           ========================================================================== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(17, 17, 17, 0.6);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .modal.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            z-index: 10;
+            font-size: 1.1rem;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .modal-header-img {
+            height: 220px;
+            position: relative;
+            background: #fdfdfd;
+        }
+
+        .modal-header-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-cat {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+        }
+
+        .modal-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-price::after {
+            content: ' บาท';
+            font-size: 1rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Order Direct actions inside modal */
+        .channel-selector {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            margin-top: 15px;
+        }
+
+        .channel-selector p {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .channel-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-channel {
+            flex: 1;
+            padding: 10px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .btn-channel.channel-fb {
+            background: #1877f2;
+        }
+
+        .btn-channel.channel-line {
+            background: #06c755;
+        }
+
+        .btn-channel:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Cart Floating Sidebar/Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 2100;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-drawer-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-drawer-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .cart-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--gray-100);
+            position: relative;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--dark-color);
+        }
+
+        .cart-item-price {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .cart-item-qty {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        .cart-item-remove {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-drawer-footer {
+            padding: 24px;
+            border-top: 1px solid var(--gray-200);
+            background: var(--gray-100);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .btn-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            gap: 10px;
+        }
+
+        .btn-checkout:hover {
+            opacity: 0.95;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 2050;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           10. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 991px) {
+            .hero-grid, .about-grid, .contact-grid {
+                display: block;
+            }
+            .hero-col, .about-col, .contact-col {
+                display: block;
+                width: 100%;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .hero-badge {
+                left: 20px;
+                bottom: 20px;
+            }
+            .about-img-area {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .about-details {
+                padding-left: 0;
+            }
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            .contact-form-area {
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            /* Nav Toggle */
+            .mobile-nav-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition-smooth);
+                z-index: 999;
+                box-shadow: var(--shadow-lg);
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            header.scrolled .nav-links {
+                top: 70px;
+                height: calc(100vh - 70px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <i class="fa-solid fa-heart bg-decor" style="top: 15%; left: 5%; font-size: 3rem;"></i>
+    <i class="fa-solid fa-heart bg-decor" style="top: 40%; right: 8%; font-size: 4rem; animation-delay: 2s;"></i>
+    <i class="fa-solid fa-heart bg-decor" style="bottom: 15%; left: 8%; font-size: 2.5rem; animation-delay: 4s;"></i>
+
+    <header id="main-header">
+        <div class="container nav-container">
+            <div class="logo-area">
+                <img src="https://media.istockphoto.com/id/503806684/th/%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2/%E0%B8%81%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B8%A7%E0%B8%B1%E0%B8%8D%E0%B8%A7%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%99%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%AB%E0%B8%B1%E0%B8%A7%E0%B9%83%E0%B8%88%E0%B8%AA%E0%B8%B5%E0%B9%81%E0%B8%94%E0%B8%87.jpg?s=612x612&w=0&k=20&c=KQ351PHsuyOKF_67eEIbT5V7Kbb8t_DhrJC05DAJUi8=" alt="ของขวัญวันวาเลนไทน์ Logo" class="logo-img">
+                <span class="logo-text">ของขวัญวันวาเลนไทน์</span>
+            </div>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#hero" class="nav-link active">หน้าแรก</a></li>
+                <li><a href="#about" class="nav-link">เกี่ยวกับเรา</a></li>
+                <li><a href="#products" class="nav-link">สินค้า</a></li>
+                <li><a href="#contact" class="nav-link">ติดต่อเรา</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-cart" id="open-cart-btn" aria-label="ดูตะกร้าสินค้า">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span class="cart-count" id="cart-counter">0</span>
+                </button>
+                <div class="mobile-nav-toggle" id="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-col">
+                    <div class="hero-content">
+                        <span class="hero-tagline"><i class="fa-solid fa-heart-pulse"></i> Valentine's Special Gift</span>
+                        <h1 class="hero-title">มอบรอยยิ้มแทนคำว่ารัก<br>ด้วย <span>ของขวัญวาเลนไทน์</span></h1>
+                        <p class="hero-desc">อย่าลืมซื้อของให้แฟนที่คุณรักด้วยนะครับ คัดสรรเฉพาะของขวัญสุดพิเศษสำหรับแฟน เพื่อเปลี่ยนทุกช่วงเวลาธรรมดาให้กลายเป็นความทรงจำแสนหวานน่าประทับใจ</p>
+                        <div class="hero-btns">
+                            <a href="#products" class="btn btn-primary"><i class="fa-solid fa-gift"></i> ดูสินค้าของขวัญ</a>
+                            <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> ติดต่อเรา</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-col">
+                    <div class="hero-image-wrapper">
+                        <img src="https://blog.bnn.in.th/wp-content/uploads/2026/02/%E0%B8%8B%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%80%E0%B8%AD%E0%B8%87-%E0%B9%80%E0%B8%AD%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%84%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%83%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%A7%E0%B8%B2%E0%B9%80%E0%B8%A5%E0%B8%99%E0%B9%84%E0%B8%97%E0%B8%99%E0%B9%8C-720x360-1.jpg" alt="ของขวัญสำหรับคนที่คุณรัก" class="hero-img">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <div class="hero-badge-txt">
+                                <h4>จัดส่งด่วนรวดเร็วทันใจ</h4>
+                                <p>ส่งทันวันสำคัญแน่นอน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-col">
+                    <div class="about-img-area">
+                        <div class="about-banner-container">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800" alt="เกี่ยวกับเรา ของขวัญวันวาเลนไทน์">
+                        </div>
+                    </div>
+                </div>
+                <div class="about-col">
+                    <div class="about-details">
+                        <h3>ของขวัญสำหรับแฟนที่คุณรัก</h3>
+                        <p>เราเข้าใจดีว่าในวันแห่งความรัก ทุกคนล้วนต้องการสิ่งที่ดีที่สุดและมีความหมายที่สุดเพื่อมอบให้กับคนที่พิเศษที่สุดในชีวิต ร้านของเราจึงได้รวบรวมของขวัญน่ารักๆ คัดสรรคุณภาพระดับพรีเมียม เพื่อเป็นสื่อกลางสื่อรักแทนความรู้สึกในใจของคุณ</p>
+                        
+                        <div class="feature-cards">
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="fa-solid fa-heart"></i></div>
+                                <div class="feat-content">
+                                    <h4>ใส่ใจในทุกรายละเอียด</h4>
+                                    <p>สินค้าของเราได้รับการจัดเตรียมอย่างพิถีพิถัน สวยงามประทับใจตั้งแต่แรกเห็น</p>
+                                </div>
+                            </div>
+                            <div class="feat-card">
+                                <div class="feat-icon" style="background: var(--secondary-gradient);"><i class="fa-solid fa-tags"></i></div>
+                                <div class="feat-content">
+                                    <h4>ราคาคุ้มค่า จับต้องได้</h4>
+                                    <p>มีช่วงราคาของขวัญหลากหลาย ให้คุณเลือกสรรตามความเหมาะสมอย่างสบายใจ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ของขวัญแนะนำของเรา</h2>
+                <p class="section-subtitle">เลือกดูสินค้าและมอบของขวัญชิ้นที่พิเศษสุดให้คนรักได้ทันที มีให้เลือกสรรครอบคลุมทุกความชอบ</p>
+            </div>
+
+            <div class="product-controls">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="ค้นหาของขวัญ เช่น กุหลาบ, หมี, สร้อย...">
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                    <button class="filter-btn" data-filter="ดอกไม้">ดอกไม้</button>
+                    <button class="filter-btn" data-filter="ตุ๊กตา">ตุ๊กตา</button>
+                    <button class="filter-btn" data-filter="สร้อยคอและข้อมือ">สร้อยคอและข้อมือ</button>
+                    <button class="filter-btn" data-filter="กล่องของขวัญ">กล่องของขวัญ</button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="product-container">
+                </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ติดต่อเรา / สั่งซื้อตรง</h2>
+                <p class="section-subtitle">สะดวกสบาย สามารถพูดคุยเพื่อรับบริการห่อของขวัญ เขียนการ์ด หรือจัดส่งด่วนผ่านช่องทางต่างๆ ของเรา</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-col">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon fb"><i class="fa-brands fa-facebook-f"></i></div>
+                            <div class="contact-details">
+                                <h4>Facebook Page</h4>
+                                <p><a href="https://facebook.com/abhisit.pimkaen" target="_blank">abhisit.pimkaen</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon line"><i class="fa-brands fa-line"></i></div>
+                            <div class="contact-details">
+                                <h4>LINE Official Account</h4>
+                                <p><a href="https://line.me/ti/p/~abhisit.pimkaen" target="_blank">@abhisit.pimkaen</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon phone"><i class="fa-solid fa-phone"></i></div>
+                            <div class="contact-details">
+                                <h4>ฝ่ายลูกค้าสัมพันธ์</h4>
+                                <p>ยินดีให้บริการดูแลคุณตลอด 24 ชั่วโมง</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-col">
+                    <div class="contact-form-area">
+                        <form class="form-card" id="msg-form">
+                            <h3>ส่งข้อความหาเรา</h3>
+                            <div class="form-group">
+                                <label for="sender-name">ชื่อของคุณ</label>
+                                <input type="text" id="sender-name" class="form-control" required placeholder="ระบุชื่อของคุณ">
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-contact">เบอร์โทรศัพท์ หรือ LINE ID</label>
+                                <input type="text" id="sender-contact" class="form-control" required placeholder="ระบุข้อมูลที่ติดต่อกลับได้">
+                            </div>
+                            <div class="form-group">
+                                <label for="sender-msg">ข้อความที่คุณต้องการสอบถาม</label>
+                                <textarea id="sender-msg" class="form-control" required placeholder="เขียนรายละเอียดคำขอห่อของขวัญ การสั่งของ หรือข้อสงสัยของคุณ"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">ส่งคำถามข้อความ <i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <span class="logo-text">ของขวัญวันวาเลนไทน์</span>
+                    </div>
+                    <p>สร้างสรรค์ด้วยหัวใจ เพื่อวันพิเศษของคุณและแฟนที่คุณรัก อย่าลืมมอบสิ่งดีๆ ให้กันและกันในวันวาเลนไทน์นี้นะครับ</p>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>ลิงก์ด่วน</h4>
+                    <ul>
+                        <li><a href="#hero">หน้าแรก</a></li>
+                        <li><a href="#about">เกี่ยวกับเรา</a></li>
+                        <li><a href="#products">สินค้า</a></li>
+                        <li><a href="#contact">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>ติดตามเรา</h4>
+                    <p style="margin-bottom: 15px; font-size: 0.95rem;">อัปเดตของขวัญเซตใหม่และสิทธิพิเศษมากมาย</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com/abhisit.pimkaen" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://line.me/ti/p/~abhisit.pimkaen" target="_blank" class="social-icon" aria-label="LINE"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ของขวัญวันวาเลนไทน์. All Rights Reserved. Created by Senior Full Stack Developer & UI/UX Specialist.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="prod-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="close-modal-btn"><i class="fa-solid fa-times"></i></button>
+            <div class="modal-header-img">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-body">
+                <span class="modal-cat" id="modal-cat">หมวดหมู่</span>
+                <h3 class="modal-title" id="modal-title">ชื่อสินค้า</h3>
+                <div class="modal-price" id="modal-price">0</div>
+                
+                <p style="color: var(--gray-600); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6;">
+                    สนใจสั่งซื้อสินค้านี้เพื่อมอบให้แฟนผู้เป็นที่รักของคุณทันที? ท่านสามารถเลือกสั่งสินค้าผ่านช่องทางยอดนิยมด้านล่างเพื่อแชทสั่งสินค้าโดยตรงกับทางเจ้าหน้าที่ของเราได้ทันที!
+                </p>
+
+                <div class="channel-selector">
+                    <p><i class="fa-solid fa-comment-heart"></i> สั่งด่วนช่องทางติดต่อหลัก</p>
+                    <div class="channel-btns">
+                        <a href="#" id="modal-fb-btn" target="_blank" class="btn-channel channel-fb">
+                            <i class="fa-brands fa-facebook"></i> Facebook
+                        </a>
+                        <a href="#" id="modal-line-btn" target="_blank" class="btn-channel channel-line">
+                            <i class="fa-brands fa-line"></i> LINE Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>รายการของขวัญที่สนใจ (<span id="cart-qty-span">0</span>)</h3>
+            <span class="cart-close" id="close-cart-drawer-btn"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+
+        <div class="cart-items-container" id="cart-items-container">
+            </div>
+
+        <div class="cart-drawer-footer">
+            <div class="cart-total-row">
+                <span>ราคารวมทั้งหมด:</span>
+                <span><span id="cart-total-span">0</span> บาท</span>
+            </div>
+            <button class="btn-checkout" id="cart-checkout-btn">
+                <i class="fa-brands fa-line"></i> ส่งรายการเพื่อสั่งผ่าน LINE
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 1. RAW DATA DEFINITIONS (Supplied by Client)
+        const productsData = [
+            { id: 1, name: "ช่อดอกกุหลาบ", price: 150, category: "ดอกไม้", img: "https://www.aflowerroom.com/wp-content/uploads/2019/12/A064_White.jpg" },
+            { id: 2, name: "ดอกทิวลิป", price: 140, category: "ดอกไม้", img: "https://flowerlabbychanana.com/wp-content/uploads/2021/04/File_118.jpeg" },
+            { id: 3, name: "ดอกเดชื่", price: 170, category: "ดอกไม้", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQTwZeOo-_W4eQiXwshBZSBi3ZxHvHFbY_r2a1AiFZPZFVxt9_FkgfnYQ&s=10" },
+            { id: 4, name: "ตุ๊กตาหมีสีชมพูถือหัวใจ", price: 210, category: "ตุ๊กตา", img: "https://down-th.img.susercontent.com/file/8991049733d83515a9d5419bb37dea6a" },
+            { id: 5, name: "ตุ๊กตาหมีสีขาวใส่เสื้อลาย", price: 250, category: "ตุ๊กตา", img: "https://img.priceza.com/img1/314/1056/314-20240129065020-162463632943749556.jpg" },
+            { id: 6, name: "ตุ๊กตาหมี2ตัวสีน้ำตาลและสีขาวถือดอกไม้", price: 240, category: "ตุ๊กตา", img: "https://sg-test-11.slatic.net/p/fc60e9effe2539917128b1bb93ca3f4d.jpg" },
+            { id: 7, name: "สร้อยคอหัวใจแม่เหล็ก", price: 150, category: "สร้อยคอและข้อมือ", img: "https://down-th.img.susercontent.com/file/cn-11134207-7r98o-lq068i7al7w502" },
+            { id: 8, name: "สร้อยข้อมือ", price: 215, category: "สร้อยคอและข้อมือ", img: "https://down-th.img.susercontent.com/file/9df1a6c4051a3b3fe7f9301bfc764b21" },
+            { id: 9, name: "กล่องขนมช็อกโกแลตทรัฟเฟิล", price: 400, category: "กล่องของขวัญ", img: "https://www.cozxy.com/images/Content/chocolate-2_mobile-2.jpg" },
+            { id: 10, name: "กล่องเปล่าใส่ของ", price: 15, category: "กล่องของขวัญ", img: "https://down-th.img.susercontent.com/file/sg-11134201-8227b-mhlnx37s69z527" }
+        ];
+
+        // Contacts URL
+        const fbUsername = "abhisit.pimkaen";
+        const lineUsername = "abhisit.pimkaen";
+        const lineUrl = `https://line.me/ti/p/~${lineUsername}`;
+        const fbUrl = `https://m.me/${fbUsername}`;
+
+        // Cart State
+        let cart = [];
+
+        // DOM Elements
+        const productContainer = document.getElementById("product-container");
+        const searchInput = document.getElementById("search-input");
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const menuToggle = document.getElementById("menu-toggle");
+        const navMenu = document.getElementById("nav-menu");
+        const mainHeader = document.getElementById("main-header");
+        
+        // Modal elements
+        const prodModal = document.getElementById("prod-modal");
+        const closeModalBtn = document.getElementById("close-modal-btn");
+        const modalImg = document.getElementById("modal-img");
+        const modalCat = document.getElementById("modal-cat");
+        const modalTitle = document.getElementById("modal-title");
+        const modalPrice = document.getElementById("modal-price");
+        const modalFbBtn = document.getElementById("modal-fb-btn");
+        const modalLineBtn = document.getElementById("modal-line-btn");
+
+        // Cart Drawer elements
+        const cartOverlay = document.getElementById("cart-overlay");
+        const cartDrawer = document.getElementById("cart-drawer");
+        const openCartBtn = document.getElementById("open-cart-btn");
+        const closeCartDrawerBtn = document.getElementById("close-cart-drawer-btn");
+        const cartCounter = document.getElementById("cart-counter");
+        const cartQtySpan = document.getElementById("cart-qty-span");
+        const cartTotalSpan = document.getElementById("cart-total-span");
+        const cartItemsContainer = document.getElementById("cart-items-container");
+        const cartCheckoutBtn = document.getElementById("cart-checkout-btn");
+
+        // 2. RENDERING AND FILTERING FUNCTIONS
+        let activeFilter = 'all';
+        let searchQuery = '';
+
+        function renderProducts() {
+            productContainer.innerHTML = '';
+            
+            // Filter products
+            const filtered = productsData.filter(p => {
+                const matchesFilter = activeFilter === 'all' || p.category === activeFilter;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                productContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-heart-crack"></i>
+                        <p>ขออภัยค่ะ ไม่พบของขวัญที่คุณค้นหา ลองระบุคำอื่นแทนนะคะ</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <span class="prod-badge">${p.category}</span>
+                    <div class="prod-img-wrapper">
+                        <img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600'">
+                    </div>
+                    <div class="prod-info">
+                        <span class="prod-cat">หมวด ${p.category}</span>
+                        <h3 class="prod-name">${p.name}</h3>
+                        <div class="prod-bottom">
+                            <span class="prod-price">${p.price}</span>
+                            <button class="btn-order" onclick="openProductDetail(${p.id})" title="ดูรายละเอียดเพื่อสั่งซื้อ">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productContainer.appendChild(card);
+            });
+        }
+
+        // Setup filter click events
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                activeFilter = btn.getAttribute("data-filter");
+                renderProducts();
+            });
+        });
+
+        // Setup search input keyboard event
+        searchInput.addEventListener("input", (e) => {
+            searchQuery = e.target.value;
+            renderProducts();
+        });
+
+        // 3. CART SYSTEM (Pure client logic, extremely useful for smooth UX)
+        function updateCartUI() {
+            // Count total qty and price
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            // Update badges/texts
+            cartCounter.innerText = totalQty;
+            cartQtySpan.innerText = totalQty;
+            cartTotalSpan.innerText = totalPrice;
+
+            // Render items in drawer
+            cartItemsContainer.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div style="text-align: center; color: var(--gray-600); padding-top: 50px;">
+                        <i class="fa-solid fa-basket-shopping" style="font-size: 2.5rem; color: var(--gray-300); margin-bottom: 10px;"></i>
+                        <p>ยังไม่มีของขวัญที่คุณสนใจในรายการค่ะ</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    const cartItemEl = document.createElement("div");
+                    cartItemEl.className = "cart-item";
+                    cartItemEl.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price} บาท</div>
+                            <div class="cart-item-qty">จำนวน: ${item.qty} ชิ้น</div>
+                        </div>
+                        <i class="fa-solid fa-trash-can cart-item-remove" onclick="removeFromCart(${item.id})"></i>
+                    `;
+                    cartItemsContainer.appendChild(cartItemEl);
+                });
+            }
+        }
+
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            
+            // Pulse effect animation on cart button
+            openCartBtn.style.transform = "scale(1.2)";
+            setTimeout(() => {
+                openCartBtn.style.transform = "none";
+            }, 200);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        // Send order list via LINE chat integration
+        cartCheckoutBtn.addEventListener("click", () => {
+            if (cart.length === 0) {
+                alert("กรุณาเลือกรายการสินค้าก่อนนำส่งนะคะ!");
+                return;
+            }
+
+            let msg = `สวัสดีครับ สนใจสั่งของขวัญวันวาเลนไทน์รายการดังต่อไปนี้:\n`;
+            cart.forEach((item, index) => {
+                msg += `${index + 1}. ${item.name} (ราคา ${item.price}บ.) จำนวน ${item.qty} ชิ้น\n`;
+            });
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            msg += `รวมทั้งสิ้น ${totalPrice} บาทครับ`;
+
+            const fullLineUrl = `${lineUrl}?text=${encodeURIComponent(msg)}`;
+            window.open(fullLineUrl, '_blank');
+        });
+
+        // 4. MODAL DETAILED VIEW INTERACTION
+        window.openProductDetail = function(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            // Update Modal Data
+            modalImg.src = product.img;
+            modalImg.onerror = function() {
+                this.src = "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600";
+            };
+            modalCat.innerText = `หมวดหมู่: ${product.category}`;
+            modalTitle.innerText = product.name;
+            modalPrice.innerText = product.price;
+
+            // Generate customized Chat Direct message links
+            const chatMessage = `สวัสดีครับ ผมอยากสอบถามหรือสั่งซื้อชิ้นนี้: ${product.name} (ราคา ${product.price} บาท) ครับ`;
+            modalFbBtn.href = `${fbUrl}?text=${encodeURIComponent(chatMessage)}`;
+            modalLineBtn.href = `${lineUrl}?text=${encodeURIComponent(chatMessage)}`;
+
+            // Open Modal
+            prodModal.classList.add("active");
+            
+            // Automatically queue into interest cart drawer silently
+            addToCart(product.id);
+        };
+
+        closeModalBtn.addEventListener("click", () => {
+            prodModal.classList.remove("active");
+        });
+
+        // Close modal when clicking outside
+        prodModal.addEventListener("click", (e) => {
+            if (e.target === prodModal) {
+                prodModal.classList.remove("active");
+            }
+        });
+
+        // 5. CART DRAWER TOGGLES
+        openCartBtn.addEventListener("click", () => {
+            cartDrawer.classList.add("active");
+            cartOverlay.classList.add("active");
+        });
+
+        closeCartDrawerBtn.addEventListener("click", () => {
+            cartDrawer.classList.remove("active");
+            cartOverlay.classList.remove("active");
+        });
+
+        cartOverlay.addEventListener("click", () => {
+            cartDrawer.classList.remove("active");
+            cartOverlay.classList.remove("active");
+        });
+
+        // 6. RESPONSIVE NAVIGATION MENU TOGGLE
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+            const icon = menuToggle.querySelector("i");
+            if (navMenu.classList.contains("active")) {
+                icon.className = "fa-solid fa-times";
+            } else {
+                icon.className = "fa-solid fa-bars";
+            }
+        });
+
+        // Close mobile nav when link clicked
+        document.querySelectorAll(".nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("active");
+                menuToggle.querySelector("i").className = "fa-solid fa-bars";
+            });
+        });
+
+        // Header Style change on Scroll
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add("scrolled");
+            } else {
+                mainHeader.classList.remove("scrolled");
+            }
+
+            // Highlights current scroll section in Navbar
+            const sections = document.querySelectorAll("section");
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach(section => {
+                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+                    const activeId = section.getAttribute("id");
+                    document.querySelectorAll(".nav-link").forEach(link => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href") === `#${activeId}`) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+            });
+        });
+
+        // 7. FEEDBACK FORM SUBMISSION INTERACTIVE (Client Mock Response)
+        const msgForm = document.getElementById("msg-form");
+        msgForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("sender-name").value;
+            const contact = document.getElementById("sender-contact").value;
+            const msg = document.getElementById("sender-msg").value;
+
+            // Display romantic, beautifully matched alerts
+            alert(`ขอบคุณคุณ ${name} มากๆ เลยนะคะ! ข้อความของคุณได้จัดเตรียมเรียบร้อยแล้ว ระบบกำลังพาท่านไปส่งรายละเอียดเพิ่มเติมทาง LINE เพื่อให้เจ้าหน้าที่ดูแลทันทีค่ะ`);
+            
+            // Redirect smoothly to customer support Line
+            const textToLink = `สวัสดีครับ/ค่ะ ชื่อ ${name} จากระบบติดต่อหน้าร้าน อยากติดต่อสอบถามรายละเอียดดังนี้:\n- เบอร์ติดต่อกลับ: ${contact}\n- ข้อความ: ${msg}`;
+            window.open(`${lineUrl}?text=${encodeURIComponent(textToLink)}`, '_blank');
+            
+            msgForm.reset();
+        });
+
+        // Initial rendering
+        renderProducts();
+    </script>
+</body>
+</html>
 
